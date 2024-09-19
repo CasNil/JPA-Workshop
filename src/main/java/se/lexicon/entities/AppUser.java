@@ -26,7 +26,6 @@ public class AppUser {
     @Column
     private LocalDate regDate;
 
-    @Setter
     @OneToOne
     @JoinColumn(name = "user_details_id")
     private Details userDetails;
@@ -34,6 +33,6 @@ public class AppUser {
     public AppUser(String username, String password, Details userDetails) {
         this.username = username;
         this.password = password;
-        this.userDetails = userDetails;
+        this.regDate = LocalDate.now();
     }
 }
