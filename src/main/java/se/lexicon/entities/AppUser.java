@@ -2,6 +2,8 @@ package se.lexicon.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @AllArgsConstructor
@@ -15,7 +17,7 @@ public class AppUser {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @Column(unique = true, nullable = false)
     @Setter private String username;
@@ -29,6 +31,9 @@ public class AppUser {
     @OneToOne
     @JoinColumn(name = "user_details_id")
     private Details userDetails;
+
+    @OneToMany(mappedBy = "borrower")
+    private Set<BookLoan> borrowers = new HashSet<>();
 
     public AppUser(String username, String password, Details userDetails) {
         this.username = username;
