@@ -20,7 +20,12 @@ public class Author {
     @Setter
     private String lastName;
 
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany
+    @JoinTable(
+            name = "author_book",
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
     private Set<Book> writtenBooks;
 
 }
