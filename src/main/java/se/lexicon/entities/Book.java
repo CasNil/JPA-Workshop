@@ -3,7 +3,9 @@ package se.lexicon.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -32,4 +34,12 @@ public class Book {
     @OneToMany(mappedBy = "book")
     @Setter
     private Set<BookLoan> bookLoans = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "author_book",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private List<Author> authors;
 }

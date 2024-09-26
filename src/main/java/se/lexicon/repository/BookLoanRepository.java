@@ -1,5 +1,6 @@
 package se.lexicon.repository;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -25,6 +26,7 @@ public interface BookLoanRepository extends CrudRepository<BookLoan, Integer> {
     List<BookLoan> findByLoanDateBetween(LocalDate startDate, LocalDate endDate);
 
     @Modifying
+    @Transactional
     @Query("UPDATE BookLoan bl SET bl.returned = true WHERE bl.id = :bookLoanId")
     void markAsReturned(@Param("bookLoanId") Integer bookLoanId);
 
