@@ -20,6 +20,7 @@ public class Book {
     private int id;
 
     @Column(unique = true, nullable = false)
+    @Setter
     private String isbn;
 
     @Column(nullable = false)
@@ -30,10 +31,20 @@ public class Book {
     @Setter
     private int maxLoanDays;
 
+    private boolean available = true;
+
     @OneToMany(mappedBy = "book")
     @Setter
     private Set<BookLoan> bookLoans = new HashSet<>();
 
     @ManyToMany(mappedBy = "writtenBooks")
     private List<Author> authors;
+
+    public void lendBook() {
+        this.available = false;
+    }
+
+    public void returnBook() {
+        this.available = true;
+    }
 }

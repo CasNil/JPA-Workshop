@@ -28,4 +28,13 @@ public class Author {
     )
     private Set<Book> writtenBooks;
 
+    public void addBook(Book book) {
+        writtenBooks.add(book);
+        book.getAuthors().add(this);
+    }
+
+    public void removeBook(Book book) {
+        writtenBooks.remove(book);
+        book.getAuthors().remove(this);
+    }
 }

@@ -29,6 +29,7 @@ public class Details {
     @Column(nullable = false)
     private LocalDate birtDate;
 
+
     public Details(String email, LocalDate birtDate, String name) {
         this.email = email;
         this.birtDate = birtDate;

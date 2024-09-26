@@ -38,6 +38,7 @@ public class BookLoan {
     @Setter
     private Book book;
 
+
     public BookLoan(LocalDate loanDate, AppUser borrower, Book book) {
         this.loanDate = LocalDate.now();
         this.borrower = borrower;
